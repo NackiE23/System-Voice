@@ -40,14 +40,20 @@ class Ui_MainWindow(object):
         font.setWeight(75)
         self.btn_register.setFont(font)
         self.btn_register.setObjectName("btn_register")
-        self.pushButton_2 = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton_2.setGeometry(QtCore.QRect(10, 220, 81, 31))
+        self.btn_register.clicked.connect(self.visible_register)
+        self.btn_register.setCheckable(False)
+
+        self.btn_login = QtWidgets.QPushButton(self.centralwidget)
+        self.btn_login.setGeometry(QtCore.QRect(10, 220, 81, 31))
         font = QtGui.QFont()
         font.setPointSize(11)
         font.setBold(True)
         font.setWeight(75)
-        self.pushButton_2.setFont(font)
-        self.pushButton_2.setObjectName("pushButton_2")
+        self.btn_login.setFont(font)
+        self.btn_login.setObjectName("btn_login")
+        self.btn_login.clicked.connect(self.visible_login)
+        self.btn_login.setCheckable(False)
+
         self.RegisterForm = QtWidgets.QGroupBox(self.centralwidget)
         self.RegisterForm.setEnabled(True)
         self.RegisterForm.setGeometry(QtCore.QRect(110, 50, 451, 111))
@@ -57,6 +63,8 @@ class Ui_MainWindow(object):
         font.setWeight(75)
         self.RegisterForm.setFont(font)
         self.RegisterForm.setObjectName("RegisterForm")
+        self.RegisterForm.setVisible(False)
+
         self.pushButton = QtWidgets.QPushButton(self.RegisterForm)
         self.pushButton.setGeometry(QtCore.QRect(330, 40, 81, 31))
         self.pushButton.setObjectName("pushButton")
@@ -78,6 +86,7 @@ class Ui_MainWindow(object):
         self.label_3 = QtWidgets.QLabel(self.RegisterForm)
         self.label_3.setGeometry(QtCore.QRect(30, 80, 91, 16))
         self.label_3.setObjectName("label_3")
+
         self.LoginForm = QtWidgets.QGroupBox(self.centralwidget)
         self.LoginForm.setGeometry(QtCore.QRect(110, 170, 451, 111))
         font = QtGui.QFont()
@@ -86,6 +95,8 @@ class Ui_MainWindow(object):
         font.setWeight(75)
         self.LoginForm.setFont(font)
         self.LoginForm.setObjectName("LoginForm")
+        self.LoginForm.setVisible(False)
+
         self.pushButton_3 = QtWidgets.QPushButton(self.LoginForm)
         self.pushButton_3.setGeometry(QtCore.QRect(330, 40, 81, 31))
         self.pushButton_3.setObjectName("pushButton_3")
@@ -124,7 +135,7 @@ class Ui_MainWindow(object):
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         self.Heading.setText(_translate("MainWindow", "Welcome to System Voice!"))
         self.btn_register.setText(_translate("MainWindow", "Register"))
-        self.pushButton_2.setText(_translate("MainWindow", "Login"))
+        self.btn_login.setText(_translate("MainWindow", "Login"))
         self.RegisterForm.setTitle(_translate("MainWindow", "Register Form"))
         self.pushButton.setText(_translate("MainWindow", "Create account"))
         self.label.setText(_translate("MainWindow", "Enter username"))
@@ -139,10 +150,25 @@ class Ui_MainWindow(object):
         self.candidates_list.setText(_translate("MainWindow", "Candidates list"))
 
 
+    def visible_login(self):
+        if self.btn_login.isChecked() == False:
+            self.LoginForm.setVisible(True)
+            self.btn_login.setCheckable(True)
+        else:
+            self.LoginForm.setVisible(False)
+
+    def visible_register(self):
+        if self.btn_register.isChecked() == False:
+            self.RegisterForm.setVisible(True)
+            self.btn_register.setCheckable(True)
+        else:
+            self.RegisterForm.setVisible(False)
+
+
 if __name__ == "__main__":
     import sys
-    from os import environ
-    suppress_qt_warnings()
+    # from os import environ
+    # suppress_qt_warnings()
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
     ui = Ui_MainWindow()
