@@ -9,6 +9,7 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from db import *
 def suppress_qt_warnings():
     environ["QT_DEVICE_PIXEL_RATIO"] = "0"
     environ["QT_AUTO_SCREEN_SCALE_FACTOR"] = "1"
@@ -65,9 +66,11 @@ class Ui_MainWindow(object):
         self.RegisterForm.setObjectName("RegisterForm")
         self.RegisterForm.setVisible(False)
 
+        # Oblect's Register Form
         self.pushButton = QtWidgets.QPushButton(self.RegisterForm)
         self.pushButton.setGeometry(QtCore.QRect(330, 40, 81, 31))
         self.pushButton.setObjectName("pushButton")
+        self.pushButton.clicked.connect(self.receiving_parameters)
         self.lineEdit = QtWidgets.QLineEdit(self.RegisterForm)
         self.lineEdit.setGeometry(QtCore.QRect(160, 20, 113, 20))
         self.lineEdit.setObjectName("lineEdit")
@@ -164,11 +167,14 @@ class Ui_MainWindow(object):
         else:
             self.RegisterForm.setVisible(False)
 
+    def receiving_parameters(self):
+        # self.label_6
+        pass
 
 if __name__ == "__main__":
     import sys
-    # from os import environ
-    # suppress_qt_warnings()
+    from os import environ
+    suppress_qt_warnings()
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
     ui = Ui_MainWindow()
